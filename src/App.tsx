@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react'
+import { useRef, useEffect, useState } from 'react'
 import * as d3 from 'd3'
 
 interface Person {
@@ -41,29 +41,22 @@ export default function App() {
     let velocity = { x: 0, y: 0 }
     let isDragging = false
     let lastDragTime = 0
-    let lastDragPos = { x: 0, y: 0 }
   
     const updateTransform = () => {
       svgGroup.attr('transform', currentTransform.toString())
     }
   
-    // Función de easing para transiciones suaves
-    const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3)
-  
     const zoom = d3.zoom<SVGSVGElement, unknown>()
       .scaleExtent([0.3, 4])
-      .on('start', (event) => {
+      .on('start', () => {
         isDragging = true
         velocity = { x: 0, y: 0 }
         lastDragTime = Date.now()
-        const point = d3.pointer(event.sourceEvent)
-        lastDragPos = { x: point[0], y: point[1] }
       })
       .on('zoom', (event) => {
         if (isDragging) {
           const now = Date.now()
           const dt = now - lastDragTime
-          const point = d3.pointer(event.sourceEvent)
           
           if (dt > 0) {
             velocity.x = (event.transform.x - currentTransform.x) / dt
@@ -73,7 +66,6 @@ export default function App() {
           currentTransform = event.transform
           targetTransform = event.transform
           lastDragTime = now
-          lastDragPos = { x: point[0], y: point[1] }
           updateTransform()
         } else {
           targetTransform = event.transform
@@ -158,7 +150,7 @@ export default function App() {
     animate()
   
     // Renderizado de árboles genealógicos con diseño minimalista
-    trees.forEach((tree, treeIndex) => {
+    trees.forEach((tree) => {
       const x = (Math.random() * width * 2) - width / 2
       const y = (Math.random() * height * 2) - height / 2
   
@@ -168,10 +160,9 @@ export default function App() {
   
       // Crear partículas para conexiones
       const particleCount = 8
-      const particles: any[] = []
       
       // Líneas de conexión con partículas (izquierda)
-      const leftLine = group.append('line')
+      group.append('line')
         .attr('x1', -35)
         .attr('y1', -45)
         .attr('x2', 0)
@@ -182,7 +173,7 @@ export default function App() {
         .attr('class', 'connection-line')
       
       // Líneas de conexión con partículas (derecha)
-      const rightLine = group.append('line')
+      group.append('line')
         .attr('x1', 35)
         .attr('y1', -45)
         .attr('x2', 0)
@@ -323,7 +314,8 @@ export default function App() {
             .transition()
             .duration(200)
             .attr('stroke-width', function() {
-              return d3.select(this.parentNode).classed('child-node') ? 3 : 2.5
+              const parent = (this as Element).parentNode as Element | null
+              return parent && d3.select(parent).classed('child-node') ? 3 : 2.5
             })
           
           d3.select(this).selectAll('.connection-line')
@@ -337,7 +329,8 @@ export default function App() {
             .transition()
             .duration(200)
             .attr('stroke-width', function() {
-              return d3.select(this.parentNode).classed('child-node') ? 2 : 1.5
+              const parent = (this as Element).parentNode as Element | null
+              return parent && d3.select(parent).classed('child-node') ? 2 : 1.5
             })
           
           d3.select(this).selectAll('.connection-line')
