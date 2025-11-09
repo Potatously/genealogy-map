@@ -1,0 +1,105 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  font-family: 'Outfit', sans-serif;
+  background-color: var(--bg);
+  color: var(--fg) !important;
+  transition: background-color 0.6s ease, color 0.6s ease;
+  cursor: default;
+}
+
+:root {
+  --bg: #ffffff;
+  --fg: #111111;
+  --footer: #888;
+}
+
+body.dark {
+  --bg: #111111 !important;
+  --fg: #ffffff !important;
+  --footer: #aaa !important;
+}
+
+body.dragging {
+  cursor: move !important;
+}
+
+body.dragging svg {
+  cursor: move !important;
+}
+
+body.dragging * {
+  cursor: move !important;
+}
+
+button.theme-toggle {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    background: var(--fg);
+    border: none;
+    color: var(--bg);
+    padding: 0.6rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 14px; /* bordes más curvos */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+  }
+
+  button.theme-toggle:hover {
+    transform: scale(1.05);
+    opacity: 0.8;
+  }
+
+footer {
+  position: fixed;
+  bottom: 0.5rem;
+  width: 100%;
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--footer);
+}
+
+svg {
+  width: 100vw;
+  height: 100vh;
+  cursor: default;
+  background-image: linear-gradient(var(--grid-color) 1px, transparent 1px), linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+  background-size: 40px 40px;
+  transition: background-color 0.6s ease;
+}
+
+:root {
+  --grid-color: #e0e0e0;
+}
+
+body.dark {
+  --grid-color: #202020;
+}
+
+svg text {
+  fill: var(--fg) !important;
+}
+
+  .icon {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+  }
+  
+  .icon.sun {
+    background: #000;
+  }
+  
+  .icon.moon {
+    background: #fff;
+  }
