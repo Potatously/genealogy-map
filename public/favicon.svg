@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <style>
+    @media (prefers-color-scheme: dark) {
+      .bg { fill: #0a0a0a; }
+      .fg { fill: #f0f0f0; }
+      .accent { stroke: #e0e0e0; }
+    }
+    @media (prefers-color-scheme: light) {
+      .bg { fill: #fafafa; }
+      .fg { fill: #1a1a1a; }
+      .accent { stroke: #2a2a2a; }
+    }
+  </style>
+  
+  <!-- Fondo con borde redondeado -->
+  <rect class="bg" width="128" height="128" rx="24"/>
+  
+  <!-- Diseño de árbol genealógico minimalista -->
+  <!-- Nodo hijo (centro inferior) -->
+  <circle class="accent" cx="64" cy="85" r="14" fill="none" stroke-width="3"/>
+  
+  <!-- Padres (arriba) -->
+  <circle class="accent" cx="44" cy="43" r="10" fill="none" stroke-width="2.5"/>
+  <circle class="accent" cx="84" cy="43" r="10" fill="none" stroke-width="2.5"/>
+  
+  <!-- Líneas de conexión -->
+  <line class="accent" x1="44" y1="53" x2="64" y2="71" stroke-width="2.5" opacity="0.7"/>
+  <line class="accent" x1="84" y1="53" x2="64" y2="71" stroke-width="2.5" opacity="0.7"/>
+  
+  <!-- Partículas decorativas -->
+  <circle class="fg" cx="52" cy="60" r="1.5" opacity="0.6"/>
+  <circle class="fg" cx="76" cy="60" r="1.5" opacity="0.6"/>
+  <circle class="fg" cx="64" cy="65" r="1.5" opacity="0.4"/>
+</svg>

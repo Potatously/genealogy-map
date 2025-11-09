@@ -1,15 +1,59 @@
-  <!DOCTYPE html>
-  <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
-    <title>Genealogy Map</title>
-  </head>
-    <body class="light">
-      <div id="root"></div>
-      <script type="module" src="/src/main.tsx"></script>
-    </body>
-  </html>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <!-- SEO Optimization -->
+  <meta name="description" content="Mapa genealógico interactivo con visualización de árboles familiares. Explora conexiones familiares con una interfaz fluida y minimalista." />
+  <meta name="keywords" content="genealogía, árbol familiar, mapa genealógico, familia, antepasados" />
+  <meta name="author" content="Potato" />
+  <meta name="robots" content="index, follow" />
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://genealogy-map.vercel.app/" />
+  <meta property="og:title" content="Genealogy Map - Mapa Genealógico Interactivo" />
+  <meta property="og:description" content="Visualiza y explora árboles genealógicos con una interfaz fluida e intuitiva" />
+  <meta property="og:image" content="/og-image.png" />
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://genealogy-map.vercel.app/" />
+  <meta property="twitter:title" content="Genealogy Map - Mapa Genealógico Interactivo" />
+  <meta property="twitter:description" content="Visualiza y explora árboles genealógicos con una interfaz fluida e intuitiva" />
+  <meta property="twitter:image" content="/og-image.png" />
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="alternate icon" href="/favicon.ico" />
+  
+  <title>Genealogy Map - Mapa Genealógico Interactivo</title>
+  
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Genealogy Map",
+    "description": "Mapa genealógico interactivo con visualización de árboles familiares",
+    "url": "https://genealogy-map.vercel.app/",
+    "applicationCategory": "UtilityApplication",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+</head>
+<body class="light">
+  <div id="root"></div>
+  <script type="module" src="/src/main.tsx"></script>
+</body>
+</html>

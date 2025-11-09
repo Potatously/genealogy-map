@@ -1,105 +1,257 @@
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 html, body {
-  margin: 0;
-  padding: 0;
+  width: 100%;
+  height: 100%;
   overflow: hidden;
   font-family: 'Outfit', sans-serif;
   background-color: var(--bg);
-  color: var(--fg) !important;
-  transition: background-color 0.6s ease, color 0.6s ease;
-  cursor: default;
+  color: var(--fg);
+  transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+              color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 :root {
-  --bg: #ffffff;
-  --fg: #111111;
-  --footer: #888;
+  /* Light theme - Minimalista elegante */
+  --bg: #fafafa;
+  --fg: #1a1a1a;
+  --fg-secondary: #666666;
+  --footer: #999999;
+  --grid-color: #e8e8e8;
+  --node-stroke: #2a2a2a;
+  --line-color: #4a4a4a;
+  --particle-color: #666666;
+  --button-bg: #2a2a2a;
+  --button-fg: #fafafa;
 }
 
 body.dark {
-  --bg: #111111 !important;
-  --fg: #ffffff !important;
-  --footer: #aaa !important;
+  /* Dark theme - Alto contraste */
+  --bg: #0a0a0a;
+  --fg: #f0f0f0;
+  --fg-secondary: #a0a0a0;
+  --footer: #808080;
+  --grid-color: #1a1a1a;
+  --node-stroke: #e0e0e0;
+  --line-color: #b0b0b0;
+  --particle-color: #c0c0c0;
+  --button-bg: #f0f0f0;
+  --button-fg: #0a0a0a;
 }
 
-body.dragging {
-  cursor: move !important;
-}
-
-body.dragging svg {
-  cursor: move !important;
-}
-
-body.dragging * {
-  cursor: move !important;
-}
-
-button.theme-toggle {
-    position: fixed;
-    top: 1rem;
-    right: 1rem;
-    background: var(--fg);
-    border: none;
-    color: var(--bg);
-    padding: 0.6rem;
-    width: 40px;
-    height: 40px;
-    border-radius: 14px; /* bordes más curvos */
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-  }
-
-  button.theme-toggle:hover {
-    transform: scale(1.05);
-    opacity: 0.8;
-  }
-
-footer {
-  position: fixed;
-  bottom: 0.5rem;
-  width: 100%;
-  text-align: center;
-  font-size: 0.8rem;
-  color: var(--footer);
+/* Estados de cursor mejorados tipo Google Maps */
+body {
+  cursor: default;
 }
 
 svg {
+  cursor: grab;
+}
+
+body.grabbing,
+body.grabbing svg,
+body.grabbing * {
+  cursor: grabbing !important;
+}
+
+/* Botón de tema mejorado */
+button.theme-toggle {
+  position: fixed;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: var(--button-bg);
+  border: none;
+  color: var(--button-fg);
+  padding: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button.theme-toggle:hover {
+  transform: scale(1.08) translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+button.theme-toggle:active {
+  transform: scale(0.98);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Footer mejorado */
+footer {
+  position: fixed;
+  bottom: 1rem;
+  width: 100%;
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--footer);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 999;
+}
+
+footer:hover {
+  opacity: 1;
+}
+
+/* SVG y grid optimizado */
+svg {
   width: 100vw;
   height: 100vh;
-  cursor: default;
-  background-image: linear-gradient(var(--grid-color) 1px, transparent 1px), linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
-  background-size: 40px 40px;
-  transition: background-color 0.6s ease;
+  display: block;
+  background-color: var(--bg);
+  background-image: 
+    linear-gradient(var(--grid-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+  background-size: 50px 50px;
+  background-position: -1px -1px;
+  transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-:root {
-  --grid-color: #e0e0e0;
-}
-
-body.dark {
-  --grid-color: #202020;
-}
-
+/* Estilos para los nodos del árbol genealógico */
 svg text {
-  fill: var(--fg) !important;
+  fill: var(--fg);
+  font-family: 'Outfit', sans-serif;
+  pointer-events: none;
+  user-select: none;
+  transition: fill 0.3s ease;
 }
 
-  .icon {
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
+.node-label {
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+.node-circle {
+  transition: stroke-width 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+              stroke 0.3s ease;
+}
+
+.connection-line {
+  transition: opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+              stroke-width 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.particle {
+  pointer-events: none;
+}
+
+.tree-group {
+  transition: opacity 0.3s ease;
+}
+
+/* Optimizaciones de rendimiento */
+* {
+  will-change: auto;
+}
+
+svg g {
+  transform-origin: center;
+}
+
+/* Mejoras de accesibilidad */
+button:focus-visible {
+  outline: 2px solid var(--node-stroke);
+  outline-offset: 3px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  button.theme-toggle {
+    top: 1rem;
+    right: 1rem;
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
   }
   
-  .icon.sun {
-    background: #000;
+  footer {
+    font-size: 0.7rem;
+    bottom: 0.75rem;
   }
   
-  .icon.moon {
-    background: #fff;
+  svg {
+    background-size: 40px 40px;
   }
+}
+
+@media (max-width: 480px) {
+  button.theme-toggle {
+    width: 36px;
+    height: 36px;
+    font-size: 1.1rem;
+  }
+  
+  footer {
+    font-size: 0.65rem;
+  }
+}
+
+/* Animaciones de carga */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+body {
+  animation: fadeIn 0.4s ease-out;
+}
+
+/* Prevenir selección de texto durante drag */
+.grabbing,
+.grabbing * {
+  user-select: none !important;
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+}
+
+/* Mejora de contraste para accesibilidad */
+@media (prefers-contrast: high) {
+  :root {
+    --fg: #000000;
+    --node-stroke: #000000;
+    --line-color: #000000;
+  }
+  
+  body.dark {
+    --fg: #ffffff;
+    --node-stroke: #ffffff;
+    --line-color: #ffffff;
+  }
+}
+
+/* Reducir movimiento para usuarios con preferencias de accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
